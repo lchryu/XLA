@@ -133,13 +133,14 @@ int main()
     {
         for (int j = 0; j < 3; j++)
         {
-            cout << fixed << setprecision(4) << G[i][j] << " ";
+            // cout << fixed << setprecision(4) << G[i][j] << " ";
+            cout << G[i][j] << " ";
         }
         cout << endl;
     }
     cout << endl; 
 
-    std::cout.unsetf(std::ios::fixed);
+    // std::cout.unsetf(std::ios::fixed);
 
     for (int i = 1; i <= row; i++)
     {
