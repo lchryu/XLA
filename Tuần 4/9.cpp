@@ -42,24 +42,25 @@ void solve(int i, int j) {
     update_points.push_back({i, j, sum});
 }
 void solve2(int i, int j) {
-    cout << "C (" << i - 1 << ", " << j - 1 << ") = ";
+    cout << "C(" << i - 1 << ", " << j - 1 << ") = ";
     double sum = 0;
+
+    cout << a_cp[i][j];
+    cout << "/(sqrt(105) * sqrt(";
     for (int k = 0; k < 9; k++)
     {
         int i1 = i + dx[k], j1 = j + dy[k];
-        int i2 = 1 + dx[k], j2 = 1 + dy[k];
 
         cout << a[i1][j1] << "^2";
         if (k != 8) cout << " + ";
         sum += pow(a[i1][j1], 2);
     }
+    cout << "))";
     double value = 1.0 * a_cp[i][j]/(sqrt(105) * sqrt(sum));
     cout << " = " << value;
 
 
     update_points2.push_back({i, j, value});
-
-    cout << endl;
 }
 void genMatrix() {
     K[0][0] = a[1][1];
@@ -76,7 +77,7 @@ int main()
 {
     #ifndef ONLINE_JUDGE
     freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
+    freopen("9.txt", "w", stdout);
     #endif
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr); 
@@ -147,7 +148,7 @@ int main()
     }
 
     cout << endl;
-    cout << "Kết quả bộ lọc: \n";
+    cout << "Áp dụng tính tương quan giữa ma trận K và ảnh I thu được: \n";
     cout << fixed << setprecision(4);
     for (int i = 1; i <= row; i++) {
         for (int j = 1; j <= col; j++) {

@@ -1,32 +1,27 @@
 #include <bits/stdc++.h>
 using namespace std;
 using ll = long long;
-struct update_point
-{
-    int i;
-    int j;
-    double value;
-};
 int row, col;
 int a[50][50];
+int a_windows[3][3];
 int dx[9] = {-1, -1, -1,  0, 0, 0,  1, 1, 1};
 int dy[9] = {-1,  0,  1, -1, 0, 1, -1, 0, 1};
-vector<update_point> update_points;
-
 void solve(int i, int j) {
-    cout << "Xét điểm (" << i - 1 << ", " << j - 1 << "): ";
+    cout << "Xét điểm (" << i - 1 << ", " << j - 1 << "): \n";
     double sum = 0;
-    cout << "(";
     for (int k = 0; k < 9; k++)
     {
         int i1 = i + dx[k], j1 = j + dy[k];
-        sum += a[i1][j1];
-        
-        if (k == 8) cout << a[i1][j1];
-        else cout << a[i1][j1] << " + ";
+        int i2 = 1 + dx[k], j2 = 1 + dy[k];
+        a_windows[i2][j2] = a[i1][j1];
     }
-    cout << ") / 9 = " << fixed << setprecision(2) << sum/9;
-    update_points.push_back({i, j, round(sum/9)});
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            cout << a_windows[i][j];
+            if (j != 2) cout << " ";
+        }
+        cout << endl;
+    }
 }
 int main()
 {
@@ -50,18 +45,5 @@ int main()
             solve(i, j);
             cout << endl;
         }
-    }
-    for (auto update_point : update_points) {
-        a[update_point.i][update_point.j] = update_point.value; 
-    }
-
-    cout << endl;
-    cout << "Kết quả bộ lọc: \n";
-    for (int i = 1; i <= row; i++) {
-        for (int j = 1; j <= col; j++) {
-            cout << a[i][j];
-            if (j != col) cout << " ";
-        }
-        cout << endl;
     }
 }

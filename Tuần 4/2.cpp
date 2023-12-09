@@ -19,9 +19,9 @@ vector<update_point> update_points;
 
 void solve(int i, int j) {
     vector<double>v;
-    cout << "Xet diem (" << i - 1 << ", " << j - 1 << "): ";
     double sum = 0;
-    cout << "(";
+    cout << "TV(" << i - 1 << ", " << j - 1 << ") = ";
+    cout << "{";
     for (int k = 0; k < 9; k++)
     {
         int i1 = i + dx[k], j1 = j + dy[k];
@@ -36,7 +36,7 @@ void solve(int i, int j) {
         else if (k != v.size() - 1) cout << v[k] << ", ";
         else if (k == v.size() - 1) cout << v[k];
     }
-    cout << ")";
+    cout << "}";
     update_points.push_back({i, j, v[4]});
 
 }
@@ -52,7 +52,8 @@ int main()
     for (int i = 1; i <= row; i++) {
         for (int j = 1; j <= col; j++) {
             cin >> a[i][j];
-            cout << a[i][j] << " ";
+            cout << a[i][j];
+            if (j != col) cout << " ";
         }
         cout << endl;
     }
@@ -71,7 +72,8 @@ int main()
     cout << "Kết quả bộ lọc: \n";
     for (int i = 1; i <= row; i++) {
         for (int j = 1; j <= col; j++) {
-            cout << a[i][j] << " ";
+            cout << a[i][j];
+            if (j != col) cout << " ";
         }
         cout << endl;
     }

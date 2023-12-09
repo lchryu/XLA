@@ -21,7 +21,8 @@ vector<vector<double>> KK = {{1, 2, 1}, {2, 4, 2}, {1, 2, 1}};
 void solve(int i, int j)
 {
     vector<double> v;
-    cout << "Xet diem (" << i - 1 << ", " << j - 1 << "):\n";
+    cout << "--------------------------Xét điểm (" << i - 1 << ", " << j - 1 << ")--------------------------\n";
+
     double sum = 0;
     cout << "I(" << i - 1 << ", " << j - 1 << ") = 1/16 * (";
     for (int k = 0; k < 9; k++)
@@ -48,17 +49,19 @@ int main()
 {
 #ifndef ONLINE_JUDGE
     freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
+    freopen("7.txt", "w", stdout);
 #endif
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
     cin >> row >> col;
+    cout << "I = \n";
     for (int i = 1; i <= row; i++)
     {
         for (int j = 1; j <= col; j++)
         {
             cin >> a[i][j];
-            cout << a[i][j] << " ";
+            cout << a[i][j];
+            if (j != col) cout << " ";
         }
         cout << endl;
     }
@@ -82,7 +85,8 @@ int main()
     {
         for (int j = 1; j <= col; j++)
         {
-            cout << a[i][j] << " ";
+            cout << a[i][j];
+            if (j != col) cout << " ";
         }
         cout << endl;
     }

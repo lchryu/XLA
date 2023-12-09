@@ -22,7 +22,8 @@ double G[3][3];
 void solve(int i, int j)
 {
     vector<double> v;
-    cout << "Xet diem (" << i - 1 << ", " << j - 1 << "): ";
+    cout << "-----------------------Xét điểm (" << i - 1 << ", " << j - 1 << ")-----------------------";
+
     double sum = 0;
     cout << "\nD(" << i - 1 << ", " << j - 1 << ") = ";
     for (int k = 0; k < 9; k++)
@@ -72,6 +73,7 @@ void solveG()
 }
 void chiaTongG()
 {
+    cout << "Chia các phần tử cho tổng ta thu được:\n";
     double sum = 0;
     for (int i = 0; i < 3; i++)
     {
@@ -97,17 +99,19 @@ int main()
 {
 #ifndef ONLINE_JUDGE
     freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
+    freopen("8.txt", "w", stdout);
 #endif
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
     cin >> row >> col;
+    cout << "I = \n";
     for (int i = 1; i <= row; i++)
     {
         for (int j = 1; j <= col; j++)
         {
             cin >> a[i][j];
-            cout << a[i][j] << " ";
+            cout << a[i][j];
+            if (j != col) cout << " ";
         }
         cout << endl;
     }
@@ -124,6 +128,7 @@ int main()
     // tính toán ma trận G
     solveG();
 
+
     // chia các phần tử của G cho tổng
     chiaTongG();
 
@@ -134,7 +139,8 @@ int main()
         for (int j = 0; j < 3; j++)
         {
             // cout << fixed << setprecision(4) << G[i][j] << " ";
-            cout << G[i][j] << " ";
+            cout << G[i][j];
+            if (j != 2) cout << " ";
         }
         cout << endl;
     }
@@ -162,7 +168,8 @@ int main()
     {
         for (int j = 1; j <= col; j++)
         {
-            cout << a[i][j] << " ";
+            cout << a[i][j];
+            if (j != col) cout << " ";
         }
         cout << endl;
     }
