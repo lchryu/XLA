@@ -1,0 +1,2 @@
+nếu abs != nhau thì giảm dần
+abs = nhau thì tăng dần
