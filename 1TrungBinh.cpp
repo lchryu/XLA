@@ -1,4 +1,8 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <cmath>
+#include <iomanip>
+#include <vector>
+#include <algorithm>
 using namespace std;
 using ll = long long;
 struct update_point
@@ -14,7 +18,7 @@ int dy[9] = {-1,  0,  1, -1, 0, 1, -1, 0, 1};
 vector<update_point> update_points;
 
 void solve(int i, int j) {
-    cout << "Xét điểm (" << i - 1 << ", " << j - 1 << "): ";
+    cout << "G(" << i - 1 << ", " << j - 1 << "):";
     double sum = 0;
     cout << "(";
     for (int k = 0; k < 9; k++)
@@ -25,7 +29,7 @@ void solve(int i, int j) {
         if (k == 8) cout << a[i1][j1];
         else cout << a[i1][j1] << " + ";
     }
-    cout << ") / 9 = " << fixed << setprecision(2) << sum/9;
+    cout << ")/9 = " << fixed << setprecision(2) << sum/9;
     update_points.push_back({i, j, round(sum/9)});
 }
 int main()
@@ -40,6 +44,10 @@ int main()
     for (int i = 1; i <= row; i++) {
         for (int j = 1; j <= col; j++) {
             cin >> a[i][j];
+        }
+    }
+    for (int i = 1; i <= row; i++) {
+        for (int j = 1; j <= col; j++) {
             cout << a[i][j];
             if (j != col) cout << " ";
         }

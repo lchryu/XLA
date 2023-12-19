@@ -5,40 +5,32 @@
 #include <algorithm>
 using namespace std;
 using ll = long long;
-int row, col;
-int a[50][50];
-int dx[9] = {-1, -1, -1,  0, 0, 0,  1, 1, 1};
-int dy[9] = {-1,  0,  1, -1, 0, 1, -1, 0, 1};
 struct update_point
 {
     int i;
     int j;
     double value;
 };
+int row, col;
+int a[50][50];
+int dx[9] = {-1, -1, -1,  0, 0, 0,  1, 1, 1};
+int dy[9] = {-1,  0,  1, -1, 0, 1, -1, 0, 1};
 vector<update_point> update_points;
 
 void solve(int i, int j) {
-    vector<double>v;
+    cout << "G(" << i - 1 << ", " << j - 1 << "):";
     double sum = 0;
-    cout << "TV(" << i - 1 << ", " << j - 1 << ") = ";
-    cout << "{";
+    cout << "(";
     for (int k = 0; k < 9; k++)
     {
         int i1 = i + dx[k], j1 = j + dy[k];
         sum += a[i1][j1];
         
-        v.push_back(a[i1][j1]);
+        if (k == 8) cout << a[i1][j1];
+        else cout << a[i1][j1] << " + ";
     }
-    sort(v.begin(), v.end());
-
-    for (int k = 0; k < v.size(); k++) {
-        if (k == 4) cout << "[" << v[k] << "], ";
-        else if (k != v.size() - 1) cout << v[k] << ", ";
-        else if (k == v.size() - 1) cout << v[k];
-    }
-    cout << "}";
-    update_points.push_back({i, j, v[4]});
-
+    cout << ")/9 = " << fixed << setprecision(2) << sum/9;
+    update_points.push_back({i, j, round(sum/9)});
 }
 int main()
 {
@@ -52,6 +44,10 @@ int main()
     for (int i = 1; i <= row; i++) {
         for (int j = 1; j <= col; j++) {
             cin >> a[i][j];
+        }
+    }
+    for (int i = 1; i <= row; i++) {
+        for (int j = 1; j <= col; j++) {
             cout << a[i][j];
             if (j != col) cout << " ";
         }
@@ -63,7 +59,6 @@ int main()
             cout << endl;
         }
     }
-
     for (auto update_point : update_points) {
         a[update_point.i][update_point.j] = update_point.value; 
     }
