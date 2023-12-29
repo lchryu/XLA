@@ -1,25 +1,14 @@
 #include <bits/stdc++.h>
-#include <algorithm>
-
 using namespace std;
 using ll = long long;
-int tongcs(int n)
+const float e = M_E;
+struct update_point
 {
-	int s = 0;
-	while (n != 0)
-	{
-		s += n % 10;
-		n /= 10;
-	}
-	return s;
-}
-
-bool cmp(int a, int b) {
-	if (tongcs(a) != tongcs(b)) {
-		return tongcs(a) > tongcs(b);
-	}
-	return a > b;
-}
+    int i;
+    int j;
+    double value;
+};
+vector<update_point> update_points;
 
 int main()
 {
@@ -29,19 +18,60 @@ int main()
 #endif
 	ios_base::sync_with_stdio(false);
 	cin.tie(nullptr);
-	int n;
-	cin >> n;
-	int a[n];
-	for (int i = 0; i < n; i++)
+	int row, col;
+	cin >> row >> col;
+	float a[row][col];
+	for (size_t i = 0; i < row; i++)
 	{
-		cin >> a[i];
+		for (size_t j = 0; j < col; j++)
+		{
+			cin >> a[i][j];
+			cout << a[i][j] << " ";
+		}
+		cout << endl;
 	}
 
-	sort(a, a + n, cmp);
-	vector<int>v = {1, -1, 3, -3, 5, -5};
+	for (int u = 0; u < row; u++)
+	{
+		for (int v = 0; v < col; v++)
+		{
+			cout << "F(" << u << ", " << v << ") = \n";
+			float res = 0;
+			for (int h = 0; h < row; h++)
+			{
+				for (int k = 0; k < col; k++)
+				{
+					string mu_str = "(" + to_string(u) + " * " + to_string(h) + ")/2 + (" + to_string(v) + " * " + to_string(k) + ")/2";
+					float mu =  1.0 * (u * h)/2 +  1.0*(v * k)/2;
+					// cout << 1.0 * (v * k)/2 << " || ";
+					// cout << mu << " || ";
+					cout << a[h][k] << "*" << "(e)^(-j*pi*2*(" << mu_str << "))";
+					// cout << a[h][k] << "*" << "(e)^(-j*2*pi*" << mu << ")";
+					if (k != col - 1) cout << " + ";
+					// else cout << " = ";
+					cout << pow(-1, 2 * mu);
+					res += a[h][k] * pow(-1, 2 * mu);
+				}
+				if (h == row - 1) cout << " = ";
+				else cout << " +\n";
+			}
+			update_points.push_back({u, v, res});
+			// cout << endl;
+			cout << res << endl;
+		}
+	}
 
-	sort(v.begin(), v.end(), cmp);
+	for (auto update_point : update_points) {
+        a[update_point.i][update_point.j] = update_point.value; 
+    }
 
-	abs giảm dần 
-	abs = nhau --> tăng dần
+	cout << endl;
+    cout << "Kết quả bộ lọc: \n";
+    for (int i = 0; i < row; i++) {
+        for (int j = 0; j < col; j++) {
+            cout << a[i][j];
+            if (j != col) cout << " ";
+        }
+        cout << endl;
+    }
 }

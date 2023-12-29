@@ -98,7 +98,7 @@ int main()
         cout << "node[" << cnt++ << "] = ";
         for (auto x : item.lst)
             cout << x << " ";
-        cout << " | i_pre: " << item.i_pre << " | j_pre: " << item.j_pre << " | i_next: " << item.i_next << endl;
+        // cout << " | i_pre: " << item.i_pre << " | j_pre: " << item.j_pre << " | i_next: " << item.i_next << endl;
     }
 
     return 0;
